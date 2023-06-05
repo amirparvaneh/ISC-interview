@@ -1,4 +1,4 @@
-newsapi:
+newsApi:
   apiKey: 3a2e0a6a29db4833b07ec3aaf755309b
   url: https://newsapi.org/v2/top-headlines
 

@@ -1,17 +1,20 @@
 package com.isc.iscnews.controller;
 
+import com.isc.iscnews.config.WebProxy;
 import com.isc.iscnews.model.News;
 import com.isc.iscnews.model.dto.NewsRequestDto;
 import com.isc.iscnews.service.serviceImpl.NewsServiceImpl;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @RestController
+@OpenAPIDefinition(tags = {@Tag(name = "newsApi",description = "finding news by country and category with webflux")})
 public class NewsController {
 
     private final NewsServiceImpl newsServiceImpl;
@@ -20,17 +23,13 @@ public class NewsController {
         this.newsServiceImpl = newsServiceImpl;
     }
 
-    @RequestMapping
-    public ResponseEntity<List<News>> getNews(@RequestParam String country, @RequestParam String category) {
+    @GetMapping
+    public Mono<List<News>> getNews(@RequestParam String country, @RequestParam String category) {
         NewsRequestDto newsRequestDto = NewsRequestDto.builder()
                 .country(country)
                 .category(category)
                 .build();
-        List<News> news = newsServiceImpl.getNews(newsRequestDto);
-        if (news.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(news, HttpStatus.OK);
-        }
+
+        return newsServiceImpl.getNews(newsRequestDto);
     }
 }
