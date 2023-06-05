@@ -10,4 +10,5 @@ import java.io.Serializable;
 public class NewsRequestDto implements Serializable {
     private String country;
     private String category;
+    private String apiKey;
 }
