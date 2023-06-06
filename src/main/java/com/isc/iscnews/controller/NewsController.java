@@ -19,6 +19,7 @@ public class NewsController {
 
     private final NewsServiceImpl newsServiceImpl;
 
+
     public NewsController(NewsServiceImpl newsServiceImpl) {
         this.newsServiceImpl = newsServiceImpl;
     }
@@ -31,5 +32,10 @@ public class NewsController {
                 .build();
 
         return newsServiceImpl.getNews(newsRequestDto);
+    }
+
+    @GetMapping(value = "/rest")
+    public List<News> getNewsByRestTemplate(@RequestParam String country, @RequestParam String category){
+        return newsServiceImpl.getNewsByRestTemplate(country,category);
     }
 }
