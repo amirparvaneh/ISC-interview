@@ -1,6 +1,5 @@
 package com.isc.iscnews.controller;
 
-import com.isc.iscnews.config.WebProxy;
 import com.isc.iscnews.model.News;
 import com.isc.iscnews.model.dto.NewsRequestDto;
 import com.isc.iscnews.service.serviceImpl.NewsServiceImpl;
@@ -14,7 +13,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @RestController
-@OpenAPIDefinition(tags = {@Tag(name = "newsApi",description = "finding news by country and category with webflux")})
+@OpenAPIDefinition(tags = {@Tag(name = "newsApi", description = "finding news by country and category with webflux")})
 public class NewsController {
 
     private final NewsServiceImpl newsServiceImpl;
@@ -31,5 +30,10 @@ public class NewsController {
                 .build();
 
         return newsServiceImpl.getNews(newsRequestDto);
+    }
+
+    @GetMapping
+    public List<News> getNewsByOpenFeign(@RequestParam String country, @RequestParam String category) {
+        return newsServiceImpl.getNewsByOpenFeign(country,category);
     }
 }
