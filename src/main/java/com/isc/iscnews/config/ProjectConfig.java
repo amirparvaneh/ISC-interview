@@ -15,6 +15,7 @@ public class ProjectConfig {
                 .build();
     }
 
+
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();

@@ -6,6 +6,7 @@ import com.isc.iscnews.model.dto.NewsRequestDto;
 import com.isc.iscnews.service.serviceImpl.NewsServiceImpl;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,7 @@ public class NewsController {
     }
 
     @GetMapping(value = "/rest")
+    @Scheduled(fixedRate = 10)
     public List<News> getNewsByRestTemplate(@RequestParam String country, @RequestParam String category){
         return newsServiceImpl.getNewsByRestTemplate(country,category);
     }

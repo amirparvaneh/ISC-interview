@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface NewsService {
     Mono<List<News>> getNews(NewsRequestDto newsRequestDto);
+    List<News> getNewsByRestTemplate(String country,String category);
 }
