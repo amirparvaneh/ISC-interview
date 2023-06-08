@@ -8,5 +8,5 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface NewsService {
-    Mono<List<News>> getNews(NewsRequestDto newsRequestDto);
+    Mono<List<News>> getNews(NewsRequestDto newsRequestDto) throws Exception;
 }

@@ -5,6 +5,7 @@ import com.isc.iscnews.model.News;
 import com.isc.iscnews.model.dto.NewsRequestDto;
 import com.isc.iscnews.repository.NewsRepo;
 import com.isc.iscnews.service.NewsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -17,6 +18,9 @@ public class NewsServiceImpl implements NewsService {
 
     private final WebProxy webProxy;
 
+    @Value("${newsApi.apiKey}")
+    private String apiKey;
+
 
     public NewsServiceImpl(NewsRepo newsRepo,WebProxy webProxy) {
         this.newsRepo = newsRepo;
@@ -24,7 +28,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Mono<List<News>> getNews(NewsRequestDto newsRequestDto) {
+    public Mono<List<News>> getNews(NewsRequestDto newsRequestDto) throws Exception {
+        newsRequestDto.setApiKey(apiKey);
         Mono<List<News>> news = webProxy.getNewsReactive(newsRequestDto);
         return news;
     }

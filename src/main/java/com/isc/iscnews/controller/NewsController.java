@@ -25,12 +25,11 @@ public class NewsController {
     }
 
     @GetMapping
-    public Mono<List<News>> getNews(@RequestParam String country, @RequestParam String category) {
+    public Mono<List<News>> getNews(@RequestParam String country, @RequestParam String category) throws Exception {
         NewsRequestDto newsRequestDto = NewsRequestDto.builder()
                 .country(country)
                 .category(category)
                 .build();
-
         return newsServiceImpl.getNews(newsRequestDto);
     }
 
