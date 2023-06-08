@@ -24,13 +24,22 @@ public class NewsController {
         this.newsServiceImpl = newsServiceImpl;
     }
 
+//    @GetMapping
+//    public Mono<List<News>> getNews(@RequestParam String country, @RequestParam String category) throws Exception {
+//        NewsRequestDto newsRequestDto = NewsRequestDto.builder()
+//                .country(country)
+//                .category(category)
+//                .build();
+//        return newsServiceImpl.getNews(newsRequestDto);
+//    }
+
     @GetMapping
-    public Mono<List<News>> getNews(@RequestParam String country, @RequestParam String category) throws Exception {
+    public List<News> getNews(@RequestParam String country,@RequestParam String category){
         NewsRequestDto newsRequestDto = NewsRequestDto.builder()
                 .country(country)
                 .category(category)
                 .build();
-        return newsServiceImpl.getNews(newsRequestDto);
+        return newsServiceImpl.getNewsWithFeign(newsRequestDto);
     }
 
 }

@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface NewsService {
     Mono<List<News>> getNews(NewsRequestDto newsRequestDto) throws Exception;
+    List<News> getNewsWithFeign(NewsRequestDto newsRequestDto);
 }
