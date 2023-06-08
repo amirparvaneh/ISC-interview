@@ -9,5 +9,4 @@ import java.util.List;
 
 public interface NewsService {
     Mono<List<News>> getNews(NewsRequestDto newsRequestDto);
-    List<News> getNewsByOpenFeign(String country,String category);
 }
