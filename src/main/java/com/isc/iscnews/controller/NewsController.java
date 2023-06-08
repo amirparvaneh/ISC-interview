@@ -6,6 +6,7 @@ import com.isc.iscnews.service.serviceImpl.NewsServiceImpl;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -13,6 +14,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/api")
 @OpenAPIDefinition(tags = {@Tag(name = "newsApi", description = "finding news by country and category with webflux")})
 public class NewsController {
 
