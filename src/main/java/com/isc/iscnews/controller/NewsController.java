@@ -32,6 +32,7 @@ public class NewsController {
         return newsServiceImpl.getNews(newsRequestDto);
     }
 
+
     @GetMapping
     public List<News> getNewsByOpenFeign(@RequestParam String country, @RequestParam String category) {
         return newsServiceImpl.getNewsByOpenFeign(country,category);
